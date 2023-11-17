@@ -64,14 +64,14 @@ db.createCollection('detalleTecnicos', {
                 },
                 resenias:{
                     bsonType: 'array',
-                    minContains: 0,
-                    maxContains: 5,
+                    minItems: 0,
+                    maxItems: 5,
                     items:{
                         bsonType: 'object',
                         required: ['consumidor', 'contenido', 'puntaje', 'fecha'],
                         properties:{
                             consumidor:{
-                                bsonType: 'ObjectId'
+                                bsonType: 'objectId'
                             },
                             contenido:{
                                 bsonType: 'string'
@@ -80,7 +80,7 @@ db.createCollection('detalleTecnicos', {
                                 bsonType: 'int'
                             },
                             fecha:{
-                                bsonType: 'Date'
+                                bsonType: 'date'
                             }
                         }
                     }
@@ -97,7 +97,7 @@ db.createCollection(reseniasTecnicos, {
             required: ['consumidor', 'contenido', 'puntaje', 'fecha'],
             properties:{
                 consumidor:{
-                    bsonType: 'ObjectId'
+                    bsonType: 'objectId'
                 },
                 contenido:{
                     bsonType: 'string'
@@ -106,10 +106,10 @@ db.createCollection(reseniasTecnicos, {
                     bsonType: 'int'
                 },
                 fecha:{
-                    bsonType: 'Date'
+                    bsonType: 'date'
                 },
                 tecnicoId:{
-                    bsonType: 'ObjectId'
+                    bsonType: 'objectId'
                 }
             }
         }
