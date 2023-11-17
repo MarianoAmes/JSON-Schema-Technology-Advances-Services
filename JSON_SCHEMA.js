@@ -1,0 +1,176 @@
+use techAdvancesServices
+
+db.createCollection('tecnicos', {
+    validator:{
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['distrito', 'especialidad', 'perfil', 'nombre', 'apellido', 'edad', 'genero'],
+            properties:{
+                distrito: {
+                    bsonType: 'object',
+                    required:['departamento', 'nombre_distrito'],
+                    properties:{
+                        departamento:{
+                            bsonType: 'string',
+                        },
+                        nombre_distrito:{
+                            bsonType: 'string'
+                        }
+                    }
+                },
+                especialidad: {
+                    bsonType: 'string',
+                },
+                perfil: {
+                    bsonType: 'string'
+                },
+                nombre: {
+                    bsonType: 'string'
+                },
+                apellido: {
+                    bsonType: 'string'
+                },
+                genero: {
+                    bsonType: 'string'
+                },
+            }
+        }
+    }
+})
+
+db.createCollection('detalleTecnicos', {
+    validator:{
+        $jsonSchema: {
+            bsonType: 'object',
+            required: [ 'edad','contacto', 'correo_electronico', 'disponibilidad', 'estado', 'tecnicoId', 'resenias'],
+            properties: {
+                edad: {
+                    bsonType: 'int'
+                },
+                contacto: {
+                    bsonType: 'int'
+                },
+                correo_electronico:{
+                    bsonType: 'string'
+                },
+                disponibilidad:{
+                    bsonType: 'string'
+                },
+                estado:{
+                    bsonType: 'string'
+                },
+                tecnicoId:{
+                    bsonType: 'objectId'
+                },
+                resenias:{
+                    bsonType: 'array',
+                    minContains: 0,
+                    maxContains: 5,
+                    items:{
+                        bsonType: 'object',
+                        required: ['consumidor', 'contenido', 'puntaje', 'fecha'],
+                        properties:{
+                            consumidor:{
+                                bsonType: 'ObjectId'
+                            },
+                            contenido:{
+                                bsonType: 'string'
+                            },
+                            puntaje:{
+                                bsonType: 'int'
+                            },
+                            fecha:{
+                                bsonType: 'Date'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+})
+
+db.createCollection(reseniasTecnicos, {
+    validator:{
+        $jsonSchema:{
+            bsonType: 'object',
+            required: ['consumidor', 'contenido', 'puntaje', 'fecha'],
+            properties:{
+                consumidor:{
+                    bsonType: 'ObjectId'
+                },
+                contenido:{
+                    bsonType: 'string'
+                },
+                puntaje:{
+                    bsonType: 'int'
+                },
+                fecha:{
+                    bsonType: 'Date'
+                },
+                tecnicoId:{
+                    bsonType: 'ObjectId'
+                }
+            }
+        }
+    }
+})
+
+db.createCollection(consumidores, {
+    validator:{
+        $jsonSchema:{
+            bsonType: 'object',
+            required: ['perfil', 'distrito', 'nombre', 'apellido'],
+            properties:{
+                perfil:{
+                    bsonType: 'string',
+                },
+                distrito:{
+                    bsonType: 'object',
+                    required:['nombre_distrito','departamento'],
+                    properties:{
+                        nombre_distrito:{
+                            bsonType: 'string',
+                        },
+                        departamento:{
+                            bsonType: 'string',
+                        }
+                    }
+                },
+                nombre:{
+                    bsonType: 'string',
+                },
+                apellido:{
+                    bsonType: 'string',
+                },
+
+            }
+        }
+    }
+})
+
+db.createCollection(detallesConsumidores, {
+    validator:{
+        $jsonSchema:{
+            bsonType: 'object',
+            required: ['edad', 'genero', 'contacto','correo','estado'],
+            properties:{
+                edad:{
+                    bsonType: 'int'
+                },
+                genero:{
+                    bsonType: 'string'
+                },
+                contacto:{
+                    bsonType: 'int'
+                },
+                correo:{
+                    bsonType: 'string'
+                },
+                estado:{
+                    bsonType: 'string'
+                }
+            }
+        }
+    }
+})
