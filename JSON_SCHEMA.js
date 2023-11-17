@@ -90,7 +90,7 @@ db.createCollection('detalleTecnicos', {
     }
 })
 
-db.createCollection(reseniasTecnicos, {
+db.createCollection('reseniasTecnicos', {
     validator:{
         $jsonSchema:{
             bsonType: 'object',
@@ -116,7 +116,7 @@ db.createCollection(reseniasTecnicos, {
     }
 })
 
-db.createCollection(consumidores, {
+db.createCollection('consumidores', {
     validator:{
         $jsonSchema:{
             bsonType: 'object',
@@ -149,11 +149,11 @@ db.createCollection(consumidores, {
     }
 })
 
-db.createCollection(detallesConsumidores, {
+db.createCollection('detallesConsumidores', {
     validator:{
         $jsonSchema:{
             bsonType: 'object',
-            required: ['edad', 'genero', 'contacto','correo','estado'],
+            required: ['edad', 'genero', 'contacto','correo','estado', 'consumidor_id'],
             properties:{
                 edad:{
                     bsonType: 'int'
@@ -169,6 +169,9 @@ db.createCollection(detallesConsumidores, {
                 },
                 estado:{
                     bsonType: 'string'
+                },
+                consumidor_id:{
+                    bsonType: 'objectId'
                 }
             }
         }
