@@ -4,7 +4,7 @@ db.createCollection('tecnicos', {
     validator:{
         $jsonSchema: {
             bsonType: 'object',
-            required: ['distrito', 'especialidad', 'perfil', 'nombre', 'apellido', 'edad', 'genero'],
+            required: ['distrito', 'especialidad', 'perfil', 'nombre', 'apellido', 'genero'],
             properties:{
                 distrito: {
                     bsonType: 'object',
